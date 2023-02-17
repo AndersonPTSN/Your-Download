@@ -71,15 +71,19 @@ def download_audio(video_url):
 		except Exception as e:
 			sg.popup("Link: "+values["input"]+"\n\nindisponivel para download ",title="ERRO")
 		else:
-			audio = yt.streams.filter(only_audio=True)[0]
-			out_file = audio.download(output_path=values["pasta"])
-
-			base, ext = os.path.splitext(out_file)
-			new_file = base + '.mp3'
 			try:
-				os.rename(out_file, new_file) # <--- Não é possível criar um arquivo já existente
+				audio = yt.streams.filter(only_audio=True)[0]
 			except Exception as e:
-				sg.popup("Vídeo: \n"+yt.title+"\n\nnão pode ser baixado pois existe um arquivo de mesmo nome",title="ERRO")
+				sg.popup("Vídeo: "+yt.title+"\n\ncom restrição de idade ",title="ERRO")
+			else:
+				out_file = audio.download(output_path=values["pasta"])
+
+				base, ext = os.path.splitext(out_file)
+				new_file = base + '.mp3'
+				try:
+					os.rename(out_file, new_file) # <--- Não é possível criar um arquivo já existente
+				except Exception as e:
+					sg.popup("Vídeo: \n"+yt.title+"\n\nnão pode ser baixado pois existe um arquivo de mesmo nome",title="ERRO")
 			sg.popup("Download finalizado com sucesso!",title="AVISO")
 
 
@@ -100,14 +104,18 @@ def download_playlist_audio(video_url):
 				except Exception as e:
 					sg.popup("Link: "+values["input"]+"\n\nindisponivel para download ",title="ERRO")
 				else:
-					audio = yt.streams.filter(only_audio=True)[0]
-					out_file = audio.download(output_path=values["pasta"])
-					base, ext = os.path.splitext(out_file)
-					new_file = base + '.mp3'
 					try:
-						os.rename(out_file, new_file) # <--- Não é possível criar um arquivo já existente
+						audio = yt.streams.filter(only_audio=True)[0]
 					except Exception as e:
-						sg.popup("Vídeo: \n"+yt.title+"\n\nnão pode ser baixado pois existe um arquivo de mesmo nome",title="ERRO")
+						sg.popup("Vídeo: "+yt.title+"\n\ncom restrição de idade ",title="ERRO")
+					else:
+						out_file = audio.download(output_path=values["pasta"])
+						base, ext = os.path.splitext(out_file)
+						new_file = base + '.mp3'
+						try:
+							os.rename(out_file, new_file) # <--- Não é possível criar um arquivo já existente
+						except Exception as e:
+							sg.popup("Vídeo: \n"+yt.title+"\n\nnão pode ser baixado pois existe um arquivo de mesmo nome",title="ERRO")
 			sg.popup("Download finalizado com sucesso!",title="AVISO")
 
 
