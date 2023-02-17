@@ -1,4 +1,3 @@
-  
 from pytube import YouTube, Playlist
 import PySimpleGUI as sg
 import threading
@@ -118,9 +117,9 @@ sg.theme('DefaultNoMoreNagging')   # --------- escolhe um tema para a interface
 frame_layout = [
 			[sg.Text('Cole o link do Youtube:')],
 			[sg.Input(key="input")],
-			[sg.Text('Deseja baixar MP4(Video) ou Audio(MP3):')],
-			[sg.Radio('MP4(Video)', "RADIO1", default=True,key="video"), sg.Radio('Audio(MP3)', "RADIO1",key="audio")],
-			[sg.Text('Deseja baixar um unico video/musica ou uma playlist:')],
+			[sg.Text('Deseja baixar em Vídeo(MP4) ou Áudio(MP3):')],
+			[sg.Radio('Vídeo(MP4)', "RADIO1", default=True,key="video"), sg.Radio('Áudio(MP3)', "RADIO1",key="audio")],
+			[sg.Text('Deseja baixar um único vídeo/música ou uma playlist:')],
 			[sg.Radio('Single', "RADIO2", default=True,key="single"), sg.Radio('Playlist', "RADIO2",key="playlist")],
 			[sg.Text('Digite o nome da pasta a ser criada:')],
 			[sg.Input('Playlist',key="pasta")],
